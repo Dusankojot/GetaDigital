@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Users</title>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <h2>List of users</h2>
+
+    <table id="Users">
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Company name</th>
+        </tr>
+    </table>
+</body>
+</html>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $.ajax({
+        url: "https://jsonplaceholder.typicode.com/users",
+        success: function (users) {
+            for (var i = 0; i < users.length; i++) {
+                var tr = document.createElement("tr");
+
+                var tdName = document.createElement("td");
+                tdName.innerHTML = users[i].name;
+
+                var tdCity = document.createElement("td");
+                tdCity.innerHTML = users[i].address.city;
+
+                var tdCopmanyName = document.createElement("td");
+                tdCopmanyName.innerHTML = users[i].company.name;
+
+                tr.appendChild(tdName);
+                tr.appendChild(tdCity);
+                tr.appendChild(tdCopmanyName);
+
+                document.getElementById('Users').appendChild(tr);
+            }
+        }
+    });
+</script>
