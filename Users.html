@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Users</title>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <table id="Users">
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Company name</th>
+        </tr>
+    </table>
+</body>
+</html>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+$.ajax({
+    url: "https://jsonplaceholder.typicode.com/users",
+    success: function (users) {
+        for (var i = 0; i < users.length; i++) {
+            var user = document.createElement("tr");
+            //user.id = 'user-' + users[i].id;
+            //user.className = 'user';
+            var tdName = document.createElement('td');
+            tdName.innerHTML = users[i].name;
+            var tdCity = document.createElement('td');
+            tdCity.innerHTML = users[i].address.city;
+            var tdCopmanyName = document.createElement('td');
+            tdCopmanyName.innerHTML = users[i].company.name;
+            //albums = document.createElement('ul');
+            //albums.className = 'albums';
+            user.appendChild(tdName);
+            user.appendChild(tdCity);
+            user.appendChild(tdCopmanyName);
+            //user.addEventListener("click", function () {
+            //    var that = this;
+            //    var userId = this.id.split('-')[1];
+            //    var dest = this.getElementsByClassName('albums')[0];
+            //    dest.innerHTML = '';
+            //    $.ajax({
+            //        url: "https://jsonplaceholder.typicode.com/albums",
+            //        success: function (albums) {
+            //            for (var j = 0; j < albums.length; j++) {
+            //                if (albums[j].userId == userId) {
+            //                    console.log(albums[j].userId, ' == ', userId);
+            //                    var li = document.createElement('li');
+            //                    li.innerHTML = albums[j].title;
+            //                    dest.appendChild(li);
+            //                }
+            //            }
+            //        }
+            //    })
+            //});
+            document.getElementById('Users').appendChild(user);
+        }
+
+        //for (var i = 0; i < users.length; i++) {
+        //    var user = document.createElement("div");
+        //    user.id = 'user-' + users[i].id;
+        //    user.className = 'user';
+        //    span = document.createElement('span');
+        //    span.innerHTML = users[i].name;
+        //    albums = document.createElement('ul');
+        //    albums.className = 'albums';
+        //    user.appendChild(span);
+        //    user.appendChild(albums);
+        //    user.addEventListener("click", function(){
+        //        var that = this;
+        //        var userId = this.id.split('-')[1];
+        //        var dest = this.getElementsByClassName('albums')[0];
+        //        dest.innerHTML = '';
+        //        $.ajax({
+        //            url: "https://jsonplaceholder.typicode.com/albums",
+        //            success: function(albums) {
+        //                for (var j = 0; j < albums.length; j++) {
+        //                    if (albums[j].userId == userId) {
+        //                        console.log(albums[j].userId, ' == ', userId);
+        //                        var li = document.createElement('li');
+        //                        li.innerHTML = albums[j].title;
+        //                        dest.appendChild(li);
+        //                    }
+        //                }
+        //            }
+        //        })
+        //    });
+        //    document.getElementById('users').appendChild(user);
+        //}
+    }
+});
+</script>
